@@ -11,31 +11,84 @@
         bt0_SorC: bt0_SorC {
             compatible = "zmk,behavior-hold-tap";
             label = "BT0_SEL_OR_CLR";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <3000>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&bt BT_CLR>, <&bt BT_SEL 0>;
+            bindings = <&bt0_hold>, <&bt0_tap>;
         };
 
         bt1_SorC: bt1_SorC {
             compatible = "zmk,behavior-hold-tap";
             label = "BT1_SEL_OR_CLR";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <3000>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&bt BT_CLR>, <&bt BT_SEL 1>;
+            bindings = <&bt1_hold>, <&bt1_tap>;
         };
 
         bt2_SorC: bt2_SorC {
             compatible = "zmk,behavior-hold-tap";
             label = "BT2_SEL_OR_CLR";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <3000>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&bt BT_CLR>, <&bt BT_SEL 2>;
+            bindings = <&bt2_hold>, <&bt2_tap>;
+        };
+    };
+
+    macros {
+        bt0_hold: bt0_hold {
+            compatible = "zmk,behavior-macro";
+            label = "BT0_CLR_AND_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_CLR>,   /* 프로파일 0 클리어 */
+                <&macro_tap &bt BT_SEL 0>; /* 프로파일 0 선택 */
+        };
+
+        bt0_tap: bt0_tap {
+            compatible = "zmk,behavior-macro";
+            label = "BT0_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_SEL 0>;
+        };
+
+        bt1_hold: bt1_hold {
+            compatible = "zmk,behavior-macro";
+            label = "BT1_CLR_AND_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_CLR>,
+                <&macro_tap &bt BT_SEL 1>;
+        };
+
+        bt1_tap: bt1_tap {
+            compatible = "zmk,behavior-macro";
+            label = "BT1_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_SEL 1>;
+        };
+
+        bt2_hold: bt2_hold {
+            compatible = "zmk,behavior-macro";
+            label = "BT2_CLR_AND_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_CLR>,
+                <&macro_tap &bt BT_SEL 2>;
+        };
+
+        bt2_tap: bt2_tap {
+            compatible = "zmk,behavior-macro";
+            label = "BT2_SEL";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap &bt BT_SEL 2>;
         };
     };
 
